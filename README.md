@@ -4,7 +4,7 @@ Blockcc-java-api is a lightweight Java library for interacting with the [Blockcc
 
 ## Language
 
-[简体中文](https://github.com/Kahen/blockccApiClient/blob/master/README.zh-CN.md)|English|
+[简体中文](https://github.com/blockcc/blockcc-api-client-java/blob/master/README.zh-CN.md
 ## Features
 
 - EXTENSIVE DATA
@@ -33,7 +33,7 @@ Blockcc-java-api is a lightweight Java library for interacting with the [Blockcc
    </dependency>
    ```
 
-   Alternatively, you can clone this repository and run the [examples](https://github.com/Kahen/blockccApiClient/tree/master/src/test/java/cc/block/api/examples).
+   Alternatively, you can clone this repository and run the [examples](https://github.com/blockcc/blockcc-api-client-java/tree/master/src/test/java/cc/block/data/api/examples).
 
 ## Examples
 
@@ -41,9 +41,9 @@ Blockcc-java-api is a lightweight Java library for interacting with the [Blockcc
 
 There  main client classes that can be used to interact with the API:
 
-[`BlockccApiRestClient`](#), a  synchronous/blocking [Blockcc API](https://github.com/Kahen/blockccApiClient/blob/master/src/main/java/cc/block/api/client/BlockccApiRestClient.java) client;
+[`BlockccApiRestClient`](#), a  synchronous/blocking [Blockcc API](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiRestClient.java) client;
 
-These can be instantiated through the corresponding factory method of [`BlockccApiClientFactory`](https://github.com/Kahen/blockccApiClient/blob/master/src/main/java/cc/block/api/client/BlockccApiClientFactory.java), by passing the `API-KEY`, which can be created at [https://data.Blockcc.com/account/dashboard](https://data.Blockcc.com/account/dashboard).
+These can be instantiated through the corresponding factory method of [`BlockccApiClientFactory`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiClientFactory.java), by passing the `API-KEY`, which can be created at [https://data.Blockcc.com/account/dashboard](https://data.Blockcc.com/account/dashboard).
 
 ```java
     BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOUR API KEY");
@@ -114,14 +114,14 @@ Once the client is instantiated, it is possible to start making requests to the 
 #### Kline
 
 ```java
-		// MarketPair desc is required
-		KlineParams klineParams = KlineParams.builder()
-            					.interval(Interval.ONE_DAY)
-            					.desc("gate-io_BTC_USDT")
-            					.build();
-        for (Kline kline : client.getKline(klineParams).getContent()) {
-            System.out.println(kline);
-        }
+    // MarketPair desc is required
+	KlineParams klineParams = KlineParams.builder()
+            				.interval(Interval.ONE_DAY)
+            				.desc("gate-io_BTC_USDT")
+            				.build();
+    for (Kline kline : client.getKline(klineParams).getContent()) {
+        System.out.println(kline);
+    }
 ```
 
 
@@ -216,4 +216,4 @@ This `Closeable` can be used to close the underlying web socket and free any ass
 
 ### More examples
 
-An extensive set of examples, covering most aspects of the API, can be found at https://github.com/Kahen/blockccApiClient/tree/master/src/test/java/cc/block/api/examples.
+An extensive set of examples, covering most aspects of the API, can be found at https://github.com/blockcc/blockcc-api-client-java/tree/master/src/test/java/cc/block/data/api/examples.

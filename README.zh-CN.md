@@ -4,7 +4,7 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 
 ## 语言
 
-简体中文|[English](https://github.com/Kahen/blockccApiClient/blob/master/README.MD)
+简体中文|[English](https://github.com/blockcc/blockcc-api-client-java/blob/master/README.md)
 ## 特性
 
 - 海量数据
@@ -33,7 +33,7 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
    </dependency>
    ```
 
-   然后，您可以克隆并且运行这些示例程序 [examples](https://github.com/Kahen/blockccApiClient/tree/master/src/test/java/cc/block/api/examples).
+   然后，您可以克隆并且运行这些示例程序 [examples](https://github.com/blockcc/blockcc-api-client-java/tree/master/src/test/java/cc/block/data/api/examples).
 
 ## 示例
 
@@ -41,9 +41,9 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 
 可以使用主要的客户端类与API进行交互：:
 
-[`BlockccApiRestClient`](#), 一个同步[Blockcc API](https://github.com/Kahen/blockccApiClient/blob/master/src/main/java/cc/block/api/client/BlockccApiRestClient.java) 客户端;
+[`BlockccApiRestClient`](#), 一个同步[Blockcc API](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiRestClient.java) 客户端;
 
-这些可以通过相应的工厂方法实例化 [`BlockccApiClientFactory`](https://github.com/Kahen/blockccApiClient/blob/master/src/main/java/cc/block/api/client/BlockccApiClientFactory.java), 通过 `API-KEY`, 可以被创建在 [https://data.Blockcc.com/account/dashboard](https://data.Blockcc.com/account/dashboard).
+这些可以通过相应的工厂方法实例化 [`BlockccApiClientFactory`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiClientFactory.java), 通过 `API-KEY`, 可以被创建在 [https://data.Blockcc.com/account/dashboard](https://data.Blockcc.com/account/dashboard).
 
 ```java
     BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOUR API KEY");
@@ -114,14 +114,14 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 #### Kline
 
 ```java
-		// MarketPair desc is required
-		KlineParams klineParams = KlineParams.builder()
-            					.interval(Interval.ONE_DAY)
-            					.desc("gate-io_BTC_USDT")
-            					.build();
-        for (Kline kline : client.getKline(klineParams).getContent()) {
-            System.out.println(kline);
-        }
+    // MarketPair desc is required
+	KlineParams klineParams = KlineParams.builder()
+            				.interval(Interval.ONE_DAY)
+            				.desc("gate-io_BTC_USDT")
+            				.build();
+    for (Kline kline : client.getKline(klineParams).getContent()) {
+        System.out.println(kline);
+    }
 ```
 
 
@@ -216,4 +216,4 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 
 ### 更多示例
 
-可以在以下位置找到涵盖API大部分方面的大量示例： https://github.com/Kahen/blockccApiClient/tree/master/src/test/java/cc/block/api/examples.
+可以在以下位置找到涵盖API大部分方面的大量示例： https://github.com/blockcc/blockcc-api-client-java/tree/master/src/test/java/cc/block/data/api/examples.
