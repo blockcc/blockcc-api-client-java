@@ -27,9 +27,9 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 
    ```xml
    <dependency>
-       <groupId>cc.block</groupId>
+       <groupId>cc.block.data</groupId>
        <artifactId>blockcc-api-client</artifactId>
-       <version>1.0.0-SNAPSHOT</version>
+       <version>1.0.0-RELEASE</version>
    </dependency>
    ```
 
