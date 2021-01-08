@@ -29,7 +29,7 @@ Blockcc-java-api is a lightweight Java library for interacting with the [Blockcc
    <dependency>
        <groupId>cc.block</groupId>
        <artifactId>blockcc-api-client</artifactId>
-       <version>0.0.2</version>
+       <version>1.0.0-SNAPSHOT</version>
    </dependency>
    ```
 
