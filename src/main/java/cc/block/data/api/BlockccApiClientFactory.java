@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020. Block.cc Inc @ https://block.cc.
+ * Copyright (c) 2021. Block.cc Inc @ https://block.cc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -22,7 +22,7 @@ import okhttp3.Cache;
 
 /**
  * @author lijiaxing
- *
+ * <p>
  * A factory for creating BlockccApi client objects.
  */
 public class BlockccApiClientFactory {

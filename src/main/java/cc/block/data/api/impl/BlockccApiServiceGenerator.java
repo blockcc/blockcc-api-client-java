@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020. Block.cc Inc @ https://block.cc.
+ * Copyright (c) 2021. Block.cc Inc @ https://block.cc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -40,19 +40,34 @@ import java.util.concurrent.TimeUnit;
 public class BlockccApiServiceGenerator {
 
     private static final Converter.Factory CONVERTER_FACTORY = JacksonConverterFactory.create();
-    private static final OkHttpClient.Builder SHARED_CLIENT_BUILDER;
+    private static final OkHttpClient SHARED_CLIENT;
 
     static {
         Dispatcher dispatcher = new Dispatcher();
         dispatcher.setMaxRequestsPerHost(500);
         dispatcher.setMaxRequests(500);
-        SHARED_CLIENT_BUILDER = new OkHttpClient.Builder()
+        SHARED_CLIENT = new OkHttpClient.Builder()
                 .dispatcher(dispatcher)
-                .pingInterval(20, TimeUnit.SECONDS);
+                .pingInterval(20, TimeUnit.SECONDS).build();
     }
 
     private BlockccApiServiceGenerator() {
         throw new IllegalStateException("Utility class");
+    }
+
+    public static <S> S createService(Class<S> serviceClass, String apiKey) {
+        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
+                .baseUrl(BlockccApiConfig.getBaseUrl())
+                .addConverterFactory(CONVERTER_FACTORY);
+
+
+        AuthenticationInterceptor interceptor = new AuthenticationInterceptor(apiKey);
+        OkHttpClient adaptedClient = SHARED_CLIENT.newBuilder().addInterceptor(interceptor).build();
+        retrofitBuilder.client(adaptedClient);
+
+
+        Retrofit retrofit = retrofitBuilder.build();
+        return retrofit.create(serviceClass);
     }
 
     /**
@@ -63,34 +78,18 @@ public class BlockccApiServiceGenerator {
      * <p>
      * BlockccApiRestClient client = factory.newRestClient(new Cache(new File("/"), 100));
      *
-     * @param cache /
+     * @param serviceClass /
+     * @param apiKey       /
+     * @param cache        /
+     * @param <S>          /
+     * @return /
      */
-    public static void cache(Cache cache) {
-        SHARED_CLIENT_BUILDER.cache(cache);
-    }
-
-    public static <S> S createService(Class<S> serviceClass, String apiKey) {
-        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
-                .baseUrl(BlockccApiConfig.getBaseUrl())
-                .addConverterFactory(CONVERTER_FACTORY);
-
-
-        AuthenticationInterceptor interceptor = new AuthenticationInterceptor(apiKey);
-        OkHttpClient adaptedClient = SHARED_CLIENT_BUILDER.addInterceptor(interceptor).build();
-        retrofitBuilder.client(adaptedClient);
-
-
-        Retrofit retrofit = retrofitBuilder.build();
-        return retrofit.create(serviceClass);
-    }
-
     public static <S> S createService(Class<S> serviceClass, String apiKey, Cache cache) {
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
                 .baseUrl(BlockccApiConfig.getBaseUrl())
                 .addConverterFactory(CONVERTER_FACTORY);
-        cache(cache);
         AuthenticationInterceptor interceptor = new AuthenticationInterceptor(apiKey);
-        OkHttpClient adaptedClient = SHARED_CLIENT_BUILDER.addInterceptor(interceptor).build();
+        OkHttpClient adaptedClient = SHARED_CLIENT.newBuilder().addInterceptor(interceptor).cache(cache).build();
         retrofitBuilder.client(adaptedClient);
 
 
@@ -143,6 +142,6 @@ public class BlockccApiServiceGenerator {
      * @return ShareClient
      */
     public static OkHttpClient getSharedClient() {
-        return SHARED_CLIENT_BUILDER.build();
+        return SHARED_CLIENT;
     }
 }
