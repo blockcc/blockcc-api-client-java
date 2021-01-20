@@ -21,7 +21,7 @@
 
     <groupId>cc.block.data</groupId>
     <artifactId>blockcc-api-client</artifactId>
-    <version>1.0.0-RELEASE</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <name>blockcc-api-client</name>
     <url>https://github.com/blockcc/blockcc-api-client-java</url>
@@ -121,9 +121,8 @@
             </build>
             <distributionManagement>
                 <snapshotRepository>
-                    <id>blockcc-dev-blockcc-api-client-java-sdk</id>
-                    <name>sdk</name>
-                    <url>https://blockcc-dev-maven.pkg.coding.net/repository/blockcc-api-client-java/sdk/</url>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                 </snapshotRepository>
                 <repository>
                     <id>ossrh</id>
