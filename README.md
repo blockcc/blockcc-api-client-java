@@ -57,12 +57,12 @@ These can be instantiated through the corresponding factory method of [`BlockccA
 ```java
         var tickerResponse = client.getTickers(
         TickerParam.builder()
-        .symbol("BTC")
-        .market("gate-io")
-        .build());
+            .symbol("BTC")
+            .market("gate-io")
+            .build());
 
         for (Ticker ticker : tickerResponse.getContent()) {
-        System.out.println(ticker);
+            System.out.println(ticker);
         }
 ```
 
@@ -94,17 +94,18 @@ These can be instantiated through the corresponding factory method of [`BlockccA
 
         // Get Price
         for (Price price : client.getPrices(priceParams).getContent()) {
-        System.out.println(price);
+            System.out.println(price);
         }
 
         // Get History Price
         HistoricalPriceParam historicalPriceParams = HistoricalPriceParam.builder()
-        .slug("ethereum")
-        .build();
+                                                                        .slug("ethereum")
+                                                                        .build();
 
         BlockccResponse<List<HistoricalPrice>> historicalPrices = client.getHistoricalPrice(historicalPriceParams);
+        
         for (HistoricalPrice historicalPrice : historicalPrices.getContent()) {
-        System.out.println(historicalPrice);
+            System.out.println(historicalPrice);
         }
 ```
 
@@ -112,11 +113,11 @@ These can be instantiated through the corresponding factory method of [`BlockccA
 
 ```java
         SymbolParam symbolParams = SymbolParam.builder()
-        .details(false)
-        .build();
+                                            .details(false)
+                                            .build();
 
         for (Symbol symbol : client.getSymbols(symbolParams).getContent()) {
-        System.out.println(symbol);
+            System.out.println(symbol);
         }
 ```
 
@@ -148,18 +149,19 @@ These can be instantiated through the corresponding factory method of [`BlockccA
 ```java
         // 1.build topic list
         List<String> list = new ArrayList<>();
+        
         list.add(Topic.builder()
-        .type(TopicType.ticker)
-        .desc("uniswap_BTC_ETH")
-        .build()
-        .toTopicString());
+            .type(TopicType.ticker)
+            .desc("uniswap_BTC_ETH")
+            .build()
+            .toTopicString());
 
         // 2.connect 
         webSocketClient.getTickers(System.out::println,
-        InputMessage.builder()
-        .operation(Operation.subscribe)
-        .args(list)
-        .build().toMessageString());
+            InputMessage.builder()
+            .operation(Operation.subscribe)
+            .args(list)
+            .build().toMessageString());
         }
 ```
 
@@ -170,22 +172,22 @@ These can be instantiated through the corresponding factory method of [`BlockccA
 
         // add Topic Message
         priceArgs.add(Topic.builder()
-        .type(TopicType.price)
-        .desc("bitcoin")
-        .build()
-        .toTopicString());
+            .type(TopicType.price)
+            .desc("bitcoin")
+            .build()
+            .toTopicString());
         priceArgs.add(Topic.builder()
-        .type(TopicType.price)
-        .desc("uniswap")
-        .build().toTopicString());
+            .type(TopicType.price)
+            .desc("uniswap")
+            .build().toTopicString());
 
         // get Price connetion
         webSocketClient.getPrices(System.out::println,
         InputMessage.builder()
-        .operation(Operation.subscribe)
-        .args(priceArgs)
-        .build()
-        .toMessageString());
+            .operation(Operation.subscribe)
+            .args(priceArgs)
+            .build()
+            .toMessageString());
 ```
 
 #### OrderBook Stream Example
@@ -195,28 +197,28 @@ These can be instantiated through the corresponding factory method of [`BlockccA
 
         // add OrderBook subcribe message list
         orderBookArgs.add(Topic.builder()
-        .type(TopicType.orderbook)
-        .desc("gate-io_BTC_USDT").build()
-        .toTopicString());
+            .type(TopicType.orderbook)
+            .desc("gate-io_BTC_USDT").build()
+            .toTopicString());
 
         orderBookArgs.add(Topic.builder()
-        .type(TopicType.orderbook)
-        .desc("binance_BNB_USDT")
-        .build()
-        .toTopicString());
+            .type(TopicType.orderbook)
+            .desc("binance_BNB_USDT")
+            .build()
+            .toTopicString());
 
         orderBookArgs.add(Topic.builder()
-        .type(TopicType.orderbook)
-        .desc("huobipro_HT_USDT")
-        .build()
-        .toTopicString());
+            .type(TopicType.orderbook)
+            .desc("huobipro_HT_USDT")
+            .build()
+            .toTopicString());
 
         // get connection
         client.getOrderBooks(System.out::println, InputMessage.builder()
-        .operation(Operation.subscribe)
-        .args(orderBookArgs)
-        .build()
-        .toMessageString());
+            .operation(Operation.subscribe)
+            .args(orderBookArgs)
+            .build()
+            .toMessageString());
 ```
 
 #### Closing web sockets

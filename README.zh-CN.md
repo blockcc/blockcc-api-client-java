@@ -10,7 +10,7 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 ## 特性
 
 - 海量数据
-
+  
   我们的数据包括加密货币交易数据，K线数据，深度数据，区块链数据，历史数据。并且通过人工清洗确保数据的完整性和准确性。
 
 - 高性能
@@ -60,12 +60,12 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 ```java
         var tickerResponse = client.getTickers(
         TickerParam.builder()
-        .symbol("BTC")
-        .market("gate-io")
-        .build());
+            .symbol("BTC")
+            .market("gate-io")
+            .build());
 
         for (Ticker ticker : tickerResponse.getContent()) {
-        System.out.println(ticker);
+            System.out.println(ticker);
         }
 ```
 
@@ -75,7 +75,7 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
         MarketParam marketParams = MarketParam.builder().build();
 
         for (Market market : client.getMarkets(marketParams).getContent()) {
-        System.out.println(market);
+            System.out.println(market);
         }
 ```
 
@@ -97,17 +97,17 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 
         // Get Price
         for (Price price : client.getPrices(priceParams).getContent()) {
-        System.out.println(price);
+            System.out.println(price);
         }
 
         // Get History Price
         HistoricalPriceParam historicalPriceParams = HistoricalPriceParam.builder()
-        .slug("ethereum")
-        .build();
+                                                            .slug("ethereum")
+                                                            .build();
 
         BlockccResponse<List<HistoricalPrice>> historicalPrices = client.getHistoricalPrice(historicalPriceParams);
         for (HistoricalPrice historicalPrice : historicalPrices.getContent()) {
-        System.out.println(historicalPrice);
+            System.out.println(historicalPrice);
         }
 ```
 
@@ -115,11 +115,11 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 
 ```java
         SymbolParam symbolParams = SymbolParam.builder()
-        .details(false)
-        .build();
+                                            .details(false)
+                                            .build();
 
         for (Symbol symbol : client.getSymbols(symbolParams).getContent()) {
-        System.out.println(symbol);
+                                            System.out.println(symbol);
         }
 ```
 
@@ -152,17 +152,17 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
         // 1.build topic list
         List<String> list = new ArrayList<>();
         list.add(Topic.builder()
-        .type(TopicType.ticker)
-        .desc("uniswap_BTC_ETH")
-        .build()
-        .toTopicString());
+                .type(TopicType.ticker)
+                .desc("uniswap_BTC_ETH")
+                .build()
+                .toTopicString());
 
         // 2.connect 
         webSocketClient.getTickers(System.out::println,
         InputMessage.builder()
-        .operation(Operation.subscribe)
-        .args(list)
-        .build().toMessageString());
+                .operation(Operation.subscribe)
+                .args(list)
+                .build().toMessageString());
         }
 ```
 
@@ -173,22 +173,25 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 
         // add Topic Message
         priceArgs.add(Topic.builder()
-        .type(TopicType.price)
-        .desc("bitcoin")
-        .build()
-        .toTopicString());
+                    .type(TopicType.price)
+                    .desc("bitcoin")
+                    .build()
+                    .toTopicString());
+        
         priceArgs.add(Topic.builder()
-        .type(TopicType.price)
-        .desc("uniswap")
-        .build().toTopicString());
+                    .type(TopicType.price)
+                    .desc("uniswap")
+                    .build()
+                    .toTopicString());
 
         // get Price connetion
         webSocketClient.getPrices(System.out::println,
+        
         InputMessage.builder()
-        .operation(Operation.subscribe)
-        .args(priceArgs)
-        .build()
-        .toMessageString());
+                    .operation(Operation.subscribe)
+                    .args(priceArgs)
+                    .build()
+                    .toMessageString());
 ```
 
 #### OrderBook Stream Example
@@ -198,28 +201,28 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 
         // add OrderBook subcribe message list
         orderBookArgs.add(Topic.builder()
-        .type(TopicType.orderbook)
-        .desc("gate-io_BTC_USDT").build()
-        .toTopicString());
+                                .type(TopicType.orderbook)
+                                .desc("gate-io_BTC_USDT").build()
+                                .toTopicString());
 
         orderBookArgs.add(Topic.builder()
-        .type(TopicType.orderbook)
-        .desc("binance_BNB_USDT")
-        .build()
-        .toTopicString());
+                                .type(TopicType.orderbook)
+                                .desc("binance_BNB_USDT")
+                                .build()
+                                .toTopicString());
 
         orderBookArgs.add(Topic.builder()
-        .type(TopicType.orderbook)
-        .desc("huobipro_HT_USDT")
-        .build()
-        .toTopicString());
+                                .type(TopicType.orderbook)
+                                .desc("huobipro_HT_USDT")
+                                .build()
+                                .toTopicString());
 
         // get connection
         client.getOrderBooks(System.out::println, InputMessage.builder()
-        .operation(Operation.subscribe)
-        .args(orderBookArgs)
-        .build()
-        .toMessageString());
+                                .operation(Operation.subscribe)
+                                .args(orderBookArgs)
+                                .build()
+                                .toMessageString());
 ```
 
 #### 关闭 web sockets
