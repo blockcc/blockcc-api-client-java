@@ -42,9 +42,7 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 
 ### 入门
 
-可以使用主要的客户端类与API进行交互：:
-
-[`BlockccApiRestClient`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiRestClient.java) , 一个同步 [Blockcc API](https://blockcc.gitee.io/blockcc-api-document/zh_CN/#rest-api-2) 客户端;
+可以使用主要的客户端类与API进行交互： [`BlockccApiRestClient`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiRestClient.java) , 一个同步 [Blockcc API](https://blockcc.gitee.io/blockcc-api-document/zh_CN/#rest-api-2) 客户端;
 
 这些可以通过相应的工厂方法实例化 [`BlockccApiClientFactory`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiClientFactory.java) , 通过 `API-KEY`, 可以被创建在 [https://data.Blockcc.com/account/dashboard](https://data.Blockcc.com/account/dashboard).
 
@@ -106,6 +104,7 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
                                                             .build();
 
         BlockccResponse<List<HistoricalPrice>> historicalPrices = client.getHistoricalPrice(historicalPriceParams);
+        
         for (HistoricalPrice historicalPrice : historicalPrices.getContent()) {
             System.out.println(historicalPrice);
         }
@@ -142,8 +141,8 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 ### Initialize the WebSocket Client
 
 ```java
-    BlockccApiWebSocketClient webSocketClient
-      = BlockccApiClientFactory.newInstance("YOU_API_KEY").newWebSocketClient();
+    BlockccApiWebSocketClient webSocketClient = BlockccApiClientFactory
+                                                  .newInstance("YOU_API_KEY").newWebSocketClient();
 ```
 
 #### Ticker Stream Example
