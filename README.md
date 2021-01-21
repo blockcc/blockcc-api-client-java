@@ -46,161 +46,177 @@ There  main client classes that can be used to interact with the API:
 These can be instantiated through the corresponding factory method of [`BlockccApiClientFactory`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiClientFactory.java), by passing the `API-KEY`, which can be created at [https://data.Blockcc.com/account/dashboard](https://data.Blockcc.com/account/dashboard).
 
 ```java
-    BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOUR API KEY");
-    BlockccApiRestClient client = factory.newRestClient();
+        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOU_API_KEY");
+        BlockccApiRestClient client = factory.newRestClient();
 ```
 
-Once the client is instantiated, it is possible to start making requests to the API.
+实例化客户端后，就可以开始向API发出请求了
 
-#### Ticker 
+#### Ticker
 
 ```java
-    var tickerResponse = client.getTickers(
-        TickerParams.builder().symbol("BTC").market("gate-io").build());
-    for (Ticker ticker : tickerResponse.getContent()) {
-            System.out.println(ticker);
-        } 
+        var tickerResponse = client.getTickers(
+        TickerParam.builder()
+        .symbol("BTC")
+        .market("gate-io")
+        .build());
+
+        for (Ticker ticker : tickerResponse.getContent()) {
+        System.out.println(ticker);
+        }
 ```
 
 #### Markets
 
 ```java
-	MarketParams marketParams = MarketParams.builder().build();
+        MarketParam marketParams = MarketParam.builder().build();
+
         for (Market market : client.getMarkets(marketParams).getContent()) {
-            System.out.println(market);
+        System.out.println(market);
         }
 ```
 
 #### OrderBook
 
 ```java
-	// need MarketPair desc
-	OrderBookParams orderBookParams = OrderBookParams.builder()
-    							.desc("gateio_BTC_USDT")
-        						.build();
-    	System.out.println(client.getOrderBook(orderBookParams));
+        // need MarketPair desc
+        OrderBookParam orderBookParams = OrderBookParam.builder()
+                .desc("gateio_BTC_USDT")
+                .build();
+
+        System.out.println(client.getOrderBook(orderBookParams));
 ```
 
 #### Price
 
 ```java
-	PriceParams priceParams = PriceParams.builder().build();
+        PriceParam priceParams = PriceParam.builder().build();
+
         // Get Price
         for (Price price : client.getPrices(priceParams).getContent()) {
-            System.out.println(price);
+        System.out.println(price);
         }
 
         // Get History Price
-        HistoricalPriceParams historicalPriceParams = HistoricalPriceParams.builder()
-            								.slug("ethereum")
-            								.build();
+        HistoricalPriceParam historicalPriceParams = HistoricalPriceParam.builder()
+        .slug("ethereum")
+        .build();
+
         BlockccResponse<List<HistoricalPrice>> historicalPrices = client.getHistoricalPrice(historicalPriceParams);
         for (HistoricalPrice historicalPrice : historicalPrices.getContent()) {
-            System.out.println(historicalPrice);
+        System.out.println(historicalPrice);
         }
 ```
 
 #### Symbol
 
 ```java
-	SymbolParams symbolParams = SymbolParams.builder()
-						.details(false)
-						.build();
+        SymbolParam symbolParams = SymbolParam.builder()
+        .details(false)
+        .build();
+
         for (Symbol symbol : client.getSymbols(symbolParams).getContent()) {
-            System.out.println(symbol);
+        System.out.println(symbol);
         }
 ```
 
 #### Kline
 
 ```java
-    // MarketPair desc is required
-	KlineParams klineParams = KlineParams.builder()
-            				.interval(Interval.ONE_DAY)
-            				.desc("gate-io_BTC_USDT")
-            				.build();
-    for (Kline kline : client.getKline(klineParams).getContent()) {
-        System.out.println(kline);
-    }
+        // MarketPair desc is required
+        KlineParam klineParams = KlineParam.builder()
+                .interval(Interval.ONE_DAY)
+                .desc("gate-io_BTC_USDT")
+                .build();
+
+        for (Kline kline : client.getKline(klineParams).getContent()) {
+                System.out.println(kline);
+        }
 ```
-
-
 
 ## WebSocket API
 
 ### Initialize the WebSocket Client
 
 ```java
-    BlockccApiWebSocketClient webSocketClient = BlockccApiClientFactory.newInstance("YOU_API_KEY").newWebSocketClient();
+    BlockccApiWebSocketClient webSocketClient
+      = BlockccApiClientFactory.newInstance("YOU_API_KEY").newWebSocketClient();
 ```
 
 #### Ticker Stream Example
 
 ```java
-    // 1.build topic list
-    List<String> list = new ArrayList<>();
-    list.add(Topic.builder()
-		.type(TopicType.ticker)
-		.desc("uniswap_BTC_ETH")
-		.build()
-		.toTopicString());
+        // 1.build topic list
+        List<String> list = new ArrayList<>();
+        list.add(Topic.builder()
+        .type(TopicType.ticker)
+        .desc("uniswap_BTC_ETH")
+        .build()
+        .toTopicString());
 
-    // 2.connect 
-    webSocketClient.getTickers(System.out::println, 
-    			InputMessage.builder()
-                           	.operation(Operation.subscribe)
-                               	.args(list)
-                               	.build().toMessageString());
+        // 2.connect 
+        webSocketClient.getTickers(System.out::println,
+        InputMessage.builder()
+        .operation(Operation.subscribe)
+        .args(list)
+        .build().toMessageString());
+        }
 ```
 
 #### Price Stream Example
 
 ```java
-	List<String> priceArgs = new ArrayList<>();
-	// add Topic Message
-  	priceArgs.add(Topic.builder()
-                .type(TopicType.price)
-                .desc("bitcoin")
-                .build()
-		.toTopicString());
-    	priceArgs.add(Topic.builder()
-                .type(TopicType.price)
-                .desc("uniswap")
-                .build().toTopicString());
-	// get Price connetion
-     	webSocketClient.getPrices(System.out::println, 
-		InputMessage.builder()
-                	.operation(Operation.subscribe)
-                	.args(priceArgs)
-                	.build()
-			.toMessageString());
+        List<String> priceArgs = new ArrayList<>();
+
+        // add Topic Message
+        priceArgs.add(Topic.builder()
+        .type(TopicType.price)
+        .desc("bitcoin")
+        .build()
+        .toTopicString());
+        priceArgs.add(Topic.builder()
+        .type(TopicType.price)
+        .desc("uniswap")
+        .build().toTopicString());
+
+        // get Price connetion
+        webSocketClient.getPrices(System.out::println,
+        InputMessage.builder()
+        .operation(Operation.subscribe)
+        .args(priceArgs)
+        .build()
+        .toMessageString());
 ```
 
 #### OrderBook Stream Example
 
 ```java
-	List<String> orderBookArgs = new ArrayList<>();
-	// add OrderBook subcribe message list
-    	orderBookArgs.add(Topic.builder()
-                        .type(TopicType.orderbook)
-                        .desc("gate-io_BTC_USDT").build()
-                        .toTopicString());
-    	orderBookArgs.add(Topic.builder()
-                        .type(TopicType.orderbook)
-                        .desc("binance_BNB_USDT")
-                        .build()
-                        .toTopicString());
-    	orderBookArgs.add(Topic.builder()
-                        .type(TopicType.orderbook)
-                        .desc("huobipro_HT_USDT")
-                        .build()
-                        .toTopicString());
-	// get connection
-   	client.getOrderBooks(System.out::println, InputMessage.builder()
-                						.operation(Operation.subscribe)
-                						.args(orderBookArgs)
-               						   	.build()
-                						.toMessageString());
+        List<String> orderBookArgs = new ArrayList<>();
+
+        // add OrderBook subcribe message list
+        orderBookArgs.add(Topic.builder()
+        .type(TopicType.orderbook)
+        .desc("gate-io_BTC_USDT").build()
+        .toTopicString());
+
+        orderBookArgs.add(Topic.builder()
+        .type(TopicType.orderbook)
+        .desc("binance_BNB_USDT")
+        .build()
+        .toTopicString());
+
+        orderBookArgs.add(Topic.builder()
+        .type(TopicType.orderbook)
+        .desc("huobipro_HT_USDT")
+        .build()
+        .toTopicString());
+
+        // get connection
+        client.getOrderBooks(System.out::println, InputMessage.builder()
+        .operation(Operation.subscribe)
+        .args(orderBookArgs)
+        .build()
+        .toMessageString());
 ```
 
 #### Closing web sockets
