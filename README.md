@@ -72,7 +72,7 @@ These can be instantiated through the corresponding factory method of [`BlockccA
         MarketParam marketParams = MarketParam.builder().build();
 
         for (Market market : client.getMarkets(marketParams).getContent()) {
-        System.out.println(market);
+        	System.out.println(market);
         }
 ```
 
@@ -140,8 +140,8 @@ These can be instantiated through the corresponding factory method of [`BlockccA
 ### Initialize the WebSocket Client
 
 ```java
-    BlockccApiWebSocketClient webSocketClient
-      = BlockccApiClientFactory.newInstance("YOU_API_KEY").newWebSocketClient();
+    BlockccApiWebSocketClient webSocketClient = BlockccApiClientFactory
+    							.newInstance("YOU_API_KEY").newWebSocketClient();
 ```
 
 #### Ticker Stream Example
