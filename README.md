@@ -50,7 +50,7 @@ These can be instantiated through the corresponding factory method of [`BlockccA
         BlockccApiRestClient client = factory.newRestClient();
 ```
 
-实例化客户端后，就可以开始向API发出请求了
+Once the client is instantiated, it is possible to start making requests to the API.
 
 #### Ticker
 
