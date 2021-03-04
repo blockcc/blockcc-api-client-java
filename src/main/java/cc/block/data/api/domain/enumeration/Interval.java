@@ -39,4 +39,9 @@ public enum Interval {
         this.duration = i;
         this.key = s;
     }
+
+    @Override
+    public String toString() {
+        return this.key;
+    }
 }
