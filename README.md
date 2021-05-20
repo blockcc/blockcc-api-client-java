@@ -2,7 +2,7 @@
 
 Blockcc-java-api is a lightweight Java library for interacting with the [Blockcc API](https://blockcc.gitee.io/blockcc-api-document/zh_CN/), providing complete API coverage, and supporting synchronous requests, as well as event streaming using WebSockets.
 
-## runtime environment
+## Runtime Environment
 JDK1.8+
 
 ## Language
