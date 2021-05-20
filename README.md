@@ -55,14 +55,15 @@ Once the client is instantiated, it is possible to start making requests to the 
 #### Ticker
 
 ```java
-        var tickerResponse = client.getTickers(
-        TickerParam.builder()
-            .symbol("BTC")
-            .market("gate-io")
-            .build());
-
-        for (Ticker ticker : tickerResponse.getContent()) {
-            System.out.println(ticker);
+        boolean hasNextPage=true;
+        TickerParam tickerParams=TickerParam.builder().slug("bitcoin").size(100).build();
+        while(hasNextPage){
+        BlockccResponse<List<Ticker>>tickerResponse=client.getTickers(tickerParams);
+        hasNextPage=tickerResponse.hasNextPage();
+        for(Ticker ticker:tickerResponse.getContent()){
+        System.out.println(ticker);
+        }
+        tickerParams.nextPage();
         }
 ```
 
