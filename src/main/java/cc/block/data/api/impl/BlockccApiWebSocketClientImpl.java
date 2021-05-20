@@ -44,26 +44,26 @@ public class BlockccApiWebSocketClientImpl implements BlockccApiWebSocketClient,
 
     @Override
     public Closeable getConnection(BlockccApiCallback<Event<Object>> callback, String msg) {
-        return createNewWebSocket(apiKey, new BlockccApiWebSocketListener<>(callback, new TypeReference<>() {
+        return createNewWebSocket(apiKey, new BlockccApiWebSocketListener<>(callback, new TypeReference<Event<Object>>() {
         }, msg));
     }
 
     @Override
     public Closeable getTickers(BlockccApiCallback<Event<Ticker>> callback, String desc) {
 
-        return createNewWebSocket(apiKey, new BlockccApiWebSocketListener<>(callback, new TypeReference<>() {
+        return createNewWebSocket(apiKey, new BlockccApiWebSocketListener<>(callback, new TypeReference<Event<Ticker>>() {
         }, desc));
     }
 
     @Override
     public Closeable getOrderBooks(BlockccApiCallback<Event<OrderBook>> callback, String desc) {
-        return createNewWebSocket(apiKey, new BlockccApiWebSocketListener<>(callback, new TypeReference<>() {
+        return createNewWebSocket(apiKey, new BlockccApiWebSocketListener<>(callback, new TypeReference<Event<OrderBook>>() {
         }, desc));
     }
 
     @Override
     public Closeable getPrices(BlockccApiCallback<Event<Price>> callback, String desc) {
-        return createNewWebSocket(apiKey, new BlockccApiWebSocketListener<>(callback, new TypeReference<>() {
+        return createNewWebSocket(apiKey, new BlockccApiWebSocketListener<>(callback, new TypeReference<Event<Price>>() {
         }, desc));
     }
 

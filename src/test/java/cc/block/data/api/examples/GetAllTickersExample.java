@@ -17,6 +17,7 @@ package cc.block.data.api.examples;
 
 import cc.block.data.api.BlockccApiClientFactory;
 import cc.block.data.api.BlockccApiRestClient;
+import cc.block.data.api.domain.BlockccResponse;
 import cc.block.data.api.domain.market.Ticker;
 import cc.block.data.api.domain.market.request.TickerParam;
 
@@ -35,14 +36,14 @@ public class GetAllTickersExample {
         BlockccApiRestClient client = factory.newRestClient();
 
 //       Get tickers by tickerParam
-        var tickerParams = TickerParam.builder()
+        TickerParam tickerParams = TickerParam.builder()
                 .market("gate-io")
                 .size(100).build();
 
         boolean hasNextPage = true;
         List<Ticker> tickers = new ArrayList<>();
         while (hasNextPage) {
-            var tickerResponse = client.getTickers(tickerParams);
+            BlockccResponse<List<Ticker>> tickerResponse = client.getTickers(tickerParams);
             tickers.addAll(tickerResponse.getContent());
             hasNextPage = tickerResponse.hasNextPage();
             tickerParams.nextPage();
