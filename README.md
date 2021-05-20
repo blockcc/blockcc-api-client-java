@@ -4,7 +4,7 @@ Blockcc-java-api is a lightweight Java library for interacting with the [Blockcc
 
 ## Language
 
-[简体中文](https://github.com/blockcc/blockcc-api-client-java/blob/master/README.zh-CN.md) |English|
+[简体中文](https://github.com/blockcc/blockcc-api-client-java/blob/master/README.zh-CN.md) |English
 ## Features
 
 - EXTENSIVE DATA
