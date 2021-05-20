@@ -3,7 +3,7 @@
 Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gitee.io/blockcc-api-document/zh_CN/),
 提供完整的API覆盖,提供完整的API覆盖，支持同步请求，以及使用WebSockets的事件流
 ## 运行环境
-JDK1.8+
+JDK 1.8+
 
 ## 语言
 
