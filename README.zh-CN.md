@@ -58,15 +58,15 @@ JDK 1.8+
 #### Ticker
 
 ```java
-        boolean hasNextPage=true;
-        TickerParam tickerParams=TickerParam.builder().slug("bitcoin").size(100).build();
+        boolean hasNextPage = true;
+        TickerParam tickerParams = TickerParam.builder().slug("bitcoin").size(100).build();
         while(hasNextPage){
-        BlockccResponse<List<Ticker>>tickerResponse=client.getTickers(tickerParams);
-        hasNextPage=tickerResponse.hasNextPage();
-        for(Ticker ticker:tickerResponse.getContent()){
-        System.out.println(ticker);
-        }
-        tickerParams.nextPage();
+          BlockccResponse<List<Ticker>>tickerResponse = client.getTickers(tickerParams);
+          hasNextPage = tickerResponse.hasNextPage();
+          for(Ticker ticker : tickerResponse.getContent()){
+            System.out.println(ticker);
+          }
+          tickerParams.nextPage();
         }
 ```
 
