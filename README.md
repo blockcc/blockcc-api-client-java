@@ -61,12 +61,13 @@ Once the client is instantiated, it is possible to start making requests to the 
         boolean hasNextPage=true;
         TickerParam tickerParams=TickerParam.builder().slug("bitcoin").size(100).build();
         while(hasNextPage){
-        BlockccResponse<List<Ticker>>tickerResponse=client.getTickers(tickerParams);
-        hasNextPage=tickerResponse.hasNextPage();
-        for(Ticker ticker:tickerResponse.getContent()){
-        System.out.println(ticker);
-        }
-        tickerParams.nextPage();
+	
+        	BlockccResponse<List<Ticker>>tickerResponse = client.getTickers(tickerParams);
+        	hasNextPage = tickerResponse.hasNextPage();
+        	for(Ticker ticker:tickerResponse.getContent()){
+        		System.out.println(ticker);
+        	}
+        	tickerParams.nextPage();
         }
 ```
 
