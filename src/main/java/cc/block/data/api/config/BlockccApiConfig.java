@@ -22,9 +22,9 @@ package cc.block.data.api.config;
  */
 public class BlockccApiConfig {
 
-    private static final String BASE_URL = "https://data.block.cc";
+    private static final String BASE_URL = "https://data.mifengcha.com";
 
-    private static final String BASE_STREAM_URL = "wss://data.block.cc/ws/v3";
+    private static final String BASE_STREAM_URL = "wss://data.mifengcha.com/ws/v3";
 
 
     private BlockccApiConfig() {
