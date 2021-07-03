@@ -2,6 +2,9 @@
 
 Blockcc-java-api is a lightweight Java library for interacting with the [Blockcc API](https://blockcc.gitee.io/blockcc-api-document/zh_CN/), providing complete API coverage, and supporting synchronous requests, as well as event streaming using WebSockets.
 
+## Runtime Environment
+JDK 1.8+
+
 ## Language
 
 [简体中文](https://github.com/blockcc/blockcc-api-client-java/blob/master/README.zh-CN.md) |English
@@ -58,12 +61,13 @@ Once the client is instantiated, it is possible to start making requests to the 
         boolean hasNextPage=true;
         TickerParam tickerParams=TickerParam.builder().slug("bitcoin").size(100).build();
         while(hasNextPage){
-        BlockccResponse<List<Ticker>>tickerResponse=client.getTickers(tickerParams);
-        hasNextPage=tickerResponse.hasNextPage();
-        for(Ticker ticker:tickerResponse.getContent()){
-        System.out.println(ticker);
-        }
-        tickerParams.nextPage();
+	
+        	BlockccResponse<List<Ticker>>tickerResponse = client.getTickers(tickerParams);
+        	hasNextPage = tickerResponse.hasNextPage();
+        	for(Ticker ticker:tickerResponse.getContent()){
+        		System.out.println(ticker);
+        	}
+        	tickerParams.nextPage();
         }
 ```
 

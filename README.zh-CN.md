@@ -2,6 +2,8 @@
 
 Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gitee.io/blockcc-api-document/zh_CN/),
 提供完整的API覆盖,提供完整的API覆盖，支持同步请求，以及使用WebSockets的事件流
+## 运行环境
+JDK 1.8+
 
 ## 语言
 
@@ -56,15 +58,15 @@ Blockcc-java-api 是一个轻量级Java库用于[Blockcc API](https://blockcc.gi
 #### Ticker
 
 ```java
-        boolean hasNextPage=true;
-        TickerParam tickerParams=TickerParam.builder().slug("bitcoin").size(100).build();
+        boolean hasNextPage = true;
+        TickerParam tickerParams = TickerParam.builder().slug("bitcoin").size(100).build();
         while(hasNextPage){
-        BlockccResponse<List<Ticker>>tickerResponse=client.getTickers(tickerParams);
-        hasNextPage=tickerResponse.hasNextPage();
-        for(Ticker ticker:tickerResponse.getContent()){
-        System.out.println(ticker);
-        }
-        tickerParams.nextPage();
+          BlockccResponse<List<Ticker>>tickerResponse = client.getTickers(tickerParams);
+          hasNextPage = tickerResponse.hasNextPage();
+          for(Ticker ticker : tickerResponse.getContent()){
+            System.out.println(ticker);
+          }
+          tickerParams.nextPage();
         }
 ```
 
