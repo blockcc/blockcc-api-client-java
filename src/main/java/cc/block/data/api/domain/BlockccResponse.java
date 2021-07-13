@@ -20,6 +20,9 @@ import lombok.Data;
 import okhttp3.Headers;
 import retrofit2.Response;
 
+/**
+ * @author kahen
+ */
 @Data
 public class BlockccResponse<T> {
 

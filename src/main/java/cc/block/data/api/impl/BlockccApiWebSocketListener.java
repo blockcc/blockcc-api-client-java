@@ -33,22 +33,22 @@ import java.io.IOException;
  */
 public class BlockccApiWebSocketListener<T> extends WebSocketListener {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
     private final ObjectReader objectReader;
     private final String msg;
-    private BlockccApiCallback<T> callback;
+    private final BlockccApiCallback<T> callback;
     private boolean closing = false;
 
     public BlockccApiWebSocketListener(BlockccApiCallback<T> callback, Class<T> eventClass, String msg) {
         this.callback = callback;
-        this.objectReader = mapper.readerFor(eventClass);
+        this.objectReader = MAPPER.readerFor(eventClass);
         this.msg = msg;
     }
 
 
     public BlockccApiWebSocketListener(BlockccApiCallback<T> callback, TypeReference<T> eventTypeReference, String msg) {
         this.callback = callback;
-        this.objectReader = mapper.readerFor(eventTypeReference);
+        this.objectReader = MAPPER.readerFor(eventTypeReference);
         this.msg = msg;
     }
 

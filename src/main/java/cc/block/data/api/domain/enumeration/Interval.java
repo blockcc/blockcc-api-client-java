@@ -33,7 +33,7 @@ public enum Interval {
     SEVEN_DAY(7, "7d");
 
     private int duration;
-    private String key;
+    private final String key;
 
     Interval(int i, String s) {
         this.duration = i;
