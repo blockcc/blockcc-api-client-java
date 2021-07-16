@@ -141,7 +141,7 @@ JDK 1.8+
 
 ## WebSocket API
 
-### Initialize the WebSocket Client
+### 初始化 WebSocket 客户端
 
 ```java
     BlockccApiWebSocketClient webSocketClient = BlockccApiClientFactory
