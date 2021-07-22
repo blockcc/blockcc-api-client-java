@@ -26,12 +26,11 @@
     <name>blockcc-api-client</name>
     <url>https://github.com/blockcc/blockcc-api-client-java</url>
     <description>
-        blockcc-api-client is a lightweight Java library for interacting with the [block.cc
-        APIv3](https://blockcc.github.io/blockcc-api-document),
-        providing complete API coverage, and supporting synchronous and asynchronous requests, as well as event
-        streaming using WebSockets.
+        blockcc-api-client is a lightweight Java library for interacting with the [Block.cc
+        APIv3](https://blockcc.github.io/blockcc-api-document), providing complete API coverage, and supporting
+        synchronous and asynchronous requests, as well as event streaming using WebSockets.
     </description>
-    <inceptionYear>2020</inceptionYear>
+    <inceptionYear>2017</inceptionYear>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -64,11 +63,6 @@
             <timezone>+8</timezone>
         </developer>
     </developers>
-
-    <ciManagement>
-        <system>Travis CI</system>
-        <url>https://travis-ci.org/blockcc/blockcc-api-client-java</url>
-    </ciManagement>
 
     <profiles>
         <profile>
@@ -121,13 +115,13 @@
             </build>
             <distributionManagement>
                 <snapshotRepository>
-                    <id>blockcc-dev-blockcc-api-client-java-sdk</id>
+                    <id>oss-snapshot</id>
                     <name>sdk</name>
-                    <url>https://blockcc-dev-maven.pkg.coding.net/repository/blockcc-api-client-java/sdk/</url>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                 </snapshotRepository>
                 <repository>
-                    <id>ossrh</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                    <id>oss-release</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
                 </repository>
             </distributionManagement>
         </profile>
