@@ -32,7 +32,7 @@ JDK 1.8+
    <dependency>
        <groupId>cc.block.data</groupId>
        <artifactId>blockcc-api-client</artifactId>
-       <version>1.3.0</version>
+       <version>1.3.1</version>
    </dependency>
    ```
 
