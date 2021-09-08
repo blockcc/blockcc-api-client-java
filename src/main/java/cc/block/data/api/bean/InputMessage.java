@@ -18,8 +18,6 @@ package cc.block.data.api.bean;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Builder;
-import lombok.Data;
 
 import java.util.List;
 
@@ -31,8 +29,6 @@ import java.util.List;
  * @author xiaochuanzhi
  *
  */
-@Data
-@Builder
 public class InputMessage implements OutputMessage {
 
     @JsonProperty("op")
@@ -40,6 +36,15 @@ public class InputMessage implements OutputMessage {
 
     @JsonProperty("args")
     private List<String> args;
+
+    InputMessage(Operation operation, List<String> args) {
+        this.operation = operation;
+        this.args = args;
+    }
+
+    public static InputMessageBuilder builder() {
+        return new InputMessageBuilder();
+    }
 
 
     @Override
@@ -53,6 +58,82 @@ public class InputMessage implements OutputMessage {
             return mapper.writeValueAsString(this);
         } catch (JsonProcessingException e) {
             return "{}";
+        }
+    }
+
+    public Operation getOperation() {
+        return this.operation;
+    }
+
+    @JsonProperty("op")
+    public void setOperation(Operation operation) {
+        this.operation = operation;
+    }
+
+    public List<String> getArgs() {
+        return this.args;
+    }
+
+    @JsonProperty("args")
+    public void setArgs(List<String> args) {
+        this.args = args;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof InputMessage)) return false;
+        final InputMessage other = (InputMessage) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$operation = this.getOperation();
+        final Object other$operation = other.getOperation();
+        if (this$operation == null ? other$operation != null : !this$operation.equals(other$operation)) return false;
+        final Object this$args = this.getArgs();
+        final Object other$args = other.getArgs();
+        if (this$args == null ? other$args != null : !this$args.equals(other$args)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof InputMessage;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $operation = this.getOperation();
+        result = result * PRIME + ($operation == null ? 43 : $operation.hashCode());
+        final Object $args = this.getArgs();
+        result = result * PRIME + ($args == null ? 43 : $args.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "InputMessage(operation=" + this.getOperation() + ", args=" + this.getArgs() + ")";
+    }
+
+    public static class InputMessageBuilder {
+        private Operation operation;
+        private List<String> args;
+
+        InputMessageBuilder() {
+        }
+
+        public InputMessageBuilder operation(Operation operation) {
+            this.operation = operation;
+            return this;
+        }
+
+        public InputMessageBuilder args(List<String> args) {
+            this.args = args;
+            return this;
+        }
+
+        public InputMessage build() {
+            return new InputMessage(operation, args);
+        }
+
+        public String toString() {
+            return "InputMessage.InputMessageBuilder(operation=" + this.operation + ", args=" + this.args + ")";
         }
     }
 }

@@ -15,10 +15,6 @@
 
 package cc.block.data.api.bean;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,9 +23,6 @@ import java.util.Set;
  * @author xiaochuanzhi
  *
  */
-@Data
-@EqualsAndHashCode
-@Builder
 public class Topic {
     TopicType type;
     String desc;
@@ -67,7 +60,85 @@ public class Topic {
         return topics;
     }
 
+    public static TopicBuilder builder() {
+        return new TopicBuilder();
+    }
+
     public String toTopicString() {
         return type + ":" + desc;
+    }
+
+    public TopicType getType() {
+        return this.type;
+    }
+
+    public void setType(TopicType type) {
+        this.type = type;
+    }
+
+    public String getDesc() {
+        return this.desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String toString() {
+        return "Topic(type=" + this.getType() + ", desc=" + this.getDesc() + ")";
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof Topic)) return false;
+        final Topic other = (Topic) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$type = this.getType();
+        final Object other$type = other.getType();
+        if (this$type == null ? other$type != null : !this$type.equals(other$type)) return false;
+        final Object this$desc = this.getDesc();
+        final Object other$desc = other.getDesc();
+        if (this$desc == null ? other$desc != null : !this$desc.equals(other$desc)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof Topic;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $type = this.getType();
+        result = result * PRIME + ($type == null ? 43 : $type.hashCode());
+        final Object $desc = this.getDesc();
+        result = result * PRIME + ($desc == null ? 43 : $desc.hashCode());
+        return result;
+    }
+
+    public static class TopicBuilder {
+        private TopicType type;
+        private String desc;
+
+        TopicBuilder() {
+        }
+
+        public TopicBuilder type(TopicType type) {
+            this.type = type;
+            return this;
+        }
+
+        public TopicBuilder desc(String desc) {
+            this.desc = desc;
+            return this;
+        }
+
+        public Topic build() {
+            return new Topic(type, desc);
+        }
+
+        public String toString() {
+            return "Topic.TopicBuilder(type=" + this.type + ", desc=" + this.desc + ")";
+        }
     }
 }

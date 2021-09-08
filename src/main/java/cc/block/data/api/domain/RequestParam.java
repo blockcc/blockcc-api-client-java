@@ -15,8 +15,6 @@
 
 package cc.block.data.api.domain;
 
-import lombok.experimental.SuperBuilder;
-
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -28,8 +26,10 @@ import java.util.Map;
 /**
  * @author xiaochuanzhi
  */
-@SuperBuilder
 public abstract class RequestParam {
+
+    protected RequestParam(RequestParamBuilder<?, ?> b) {
+    }
 
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -54,4 +54,13 @@ public abstract class RequestParam {
     }
 
 
+    public static abstract class RequestParamBuilder<C extends RequestParam, B extends RequestParamBuilder<C, B>> {
+        protected abstract B self();
+
+        public abstract C build();
+
+        public String toString() {
+            return "RequestParam.RequestParamBuilder()";
+        }
+    }
 }

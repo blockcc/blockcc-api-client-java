@@ -16,18 +16,64 @@
 package cc.block.data.api.domain.market.request;
 
 import cc.block.data.api.domain.PageableParam;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.SuperBuilder;
 
 /**
  * @author lijiaxing
  * <p>
  * Market Request Parameter
  */
-@EqualsAndHashCode(callSuper = true)
-@SuperBuilder
-@Data
 public class MarketParam extends PageableParam {
 
+    protected MarketParam(MarketParamBuilder<?, ?> b) {
+        super(b);
+    }
+
+    public static MarketParamBuilder<?, ?> builder() {
+        return new MarketParamBuilderImpl();
+    }
+
+    public String toString() {
+        return "MarketParam()";
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof MarketParam)) return false;
+        final MarketParam other = (MarketParam) o;
+        if (!other.canEqual((Object) this)) return false;
+        if (!super.equals(o)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof MarketParam;
+    }
+
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    public static abstract class MarketParamBuilder<C extends MarketParam, B extends MarketParamBuilder<C, B>> extends PageableParamBuilder<C, B> {
+        protected abstract B self();
+
+        public abstract C build();
+
+        public String toString() {
+            return "MarketParam.MarketParamBuilder(super=" + super.toString() + ")";
+        }
+    }
+
+    private static final class MarketParamBuilderImpl extends MarketParamBuilder<MarketParam, MarketParamBuilderImpl> {
+        private MarketParamBuilderImpl() {
+        }
+
+        protected MarketParamBuilderImpl self() {
+            return this;
+        }
+
+        public MarketParam build() {
+            return new MarketParam(this);
+        }
+    }
 }

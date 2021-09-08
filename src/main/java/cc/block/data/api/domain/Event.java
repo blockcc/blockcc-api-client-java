@@ -23,8 +23,6 @@ import cc.block.data.api.domain.market.Ticker;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -32,8 +30,6 @@ import java.util.Objects;
 /**
  * @author lijiaxing
  */
-@Data
-@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Event<T> implements OutputMessage {
 
@@ -60,6 +56,9 @@ public class Event<T> implements OutputMessage {
      */
     @JsonProperty("data")
     private T data;
+
+    public Event() {
+    }
 
     @Override
     public String toString() {
@@ -92,5 +91,79 @@ public class Event<T> implements OutputMessage {
         } catch (IOException e) {
             return "{}";
         }
+    }
+
+    public Integer getCode() {
+        return this.code;
+    }
+
+    @JsonProperty("code")
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return this.message;
+    }
+
+    @JsonProperty("message")
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getTopic() {
+        return this.topic;
+    }
+
+    @JsonProperty("topic")
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public T getData() {
+        return this.data;
+    }
+
+    @JsonProperty("data")
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof Event)) return false;
+        final Event<?> other = (Event<?>) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$code = this.getCode();
+        final Object other$code = other.getCode();
+        if (this$code == null ? other$code != null : !this$code.equals(other$code)) return false;
+        final Object this$message = this.getMessage();
+        final Object other$message = other.getMessage();
+        if (this$message == null ? other$message != null : !this$message.equals(other$message)) return false;
+        final Object this$topic = this.getTopic();
+        final Object other$topic = other.getTopic();
+        if (this$topic == null ? other$topic != null : !this$topic.equals(other$topic)) return false;
+        final Object this$data = this.getData();
+        final Object other$data = other.getData();
+        if (this$data == null ? other$data != null : !this$data.equals(other$data)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof Event;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $code = this.getCode();
+        result = result * PRIME + ($code == null ? 43 : $code.hashCode());
+        final Object $message = this.getMessage();
+        result = result * PRIME + ($message == null ? 43 : $message.hashCode());
+        final Object $topic = this.getTopic();
+        result = result * PRIME + ($topic == null ? 43 : $topic.hashCode());
+        final Object $data = this.getData();
+        result = result * PRIME + ($data == null ? 43 : $data.hashCode());
+        return result;
     }
 }

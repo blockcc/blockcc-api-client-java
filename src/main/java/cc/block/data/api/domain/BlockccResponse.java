@@ -16,14 +16,12 @@
 package cc.block.data.api.domain;
 
 import cc.block.data.api.constant.BlockccApiConstants;
-import lombok.Data;
 import okhttp3.Headers;
 import retrofit2.Response;
 
 /**
  * @author kahen
  */
-@Data
 public class BlockccResponse<T> {
 
     private Long total;
@@ -111,4 +109,131 @@ public class BlockccResponse<T> {
         return next != null;
     }
 
+    public Long getTotal() {
+        return this.total;
+    }
+
+    public void setTotal(Long total) {
+        this.total = total;
+    }
+
+    public String getFirst() {
+        return this.first;
+    }
+
+    public void setFirst(String first) {
+        this.first = first;
+    }
+
+    public String getPrev() {
+        return this.prev;
+    }
+
+    public void setPrev(String prev) {
+        this.prev = prev;
+    }
+
+    public String getNext() {
+        return this.next;
+    }
+
+    public void setNext(String next) {
+        this.next = next;
+    }
+
+    public String getLast() {
+        return this.last;
+    }
+
+    public void setLast(String last) {
+        this.last = last;
+    }
+
+    public Long getRateLimitTotal() {
+        return this.rateLimitTotal;
+    }
+
+    public void setRateLimitTotal(Long rateLimitTotal) {
+        this.rateLimitTotal = rateLimitTotal;
+    }
+
+    public Long getRateLimitRemain() {
+        return this.rateLimitRemain;
+    }
+
+    public void setRateLimitRemain(Long rateLimitRemain) {
+        this.rateLimitRemain = rateLimitRemain;
+    }
+
+    public T getContent() {
+        return this.content;
+    }
+
+    public void setContent(T content) {
+        this.content = content;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof BlockccResponse)) return false;
+        final BlockccResponse<?> other = (BlockccResponse<?>) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$total = this.getTotal();
+        final Object other$total = other.getTotal();
+        if (this$total == null ? other$total != null : !this$total.equals(other$total)) return false;
+        final Object this$first = this.getFirst();
+        final Object other$first = other.getFirst();
+        if (this$first == null ? other$first != null : !this$first.equals(other$first)) return false;
+        final Object this$prev = this.getPrev();
+        final Object other$prev = other.getPrev();
+        if (this$prev == null ? other$prev != null : !this$prev.equals(other$prev)) return false;
+        final Object this$next = this.getNext();
+        final Object other$next = other.getNext();
+        if (this$next == null ? other$next != null : !this$next.equals(other$next)) return false;
+        final Object this$last = this.getLast();
+        final Object other$last = other.getLast();
+        if (this$last == null ? other$last != null : !this$last.equals(other$last)) return false;
+        final Object this$rateLimitTotal = this.getRateLimitTotal();
+        final Object other$rateLimitTotal = other.getRateLimitTotal();
+        if (this$rateLimitTotal == null ? other$rateLimitTotal != null : !this$rateLimitTotal.equals(other$rateLimitTotal))
+            return false;
+        final Object this$rateLimitRemain = this.getRateLimitRemain();
+        final Object other$rateLimitRemain = other.getRateLimitRemain();
+        if (this$rateLimitRemain == null ? other$rateLimitRemain != null : !this$rateLimitRemain.equals(other$rateLimitRemain))
+            return false;
+        final Object this$content = this.getContent();
+        final Object other$content = other.getContent();
+        if (this$content == null ? other$content != null : !this$content.equals(other$content)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof BlockccResponse;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $total = this.getTotal();
+        result = result * PRIME + ($total == null ? 43 : $total.hashCode());
+        final Object $first = this.getFirst();
+        result = result * PRIME + ($first == null ? 43 : $first.hashCode());
+        final Object $prev = this.getPrev();
+        result = result * PRIME + ($prev == null ? 43 : $prev.hashCode());
+        final Object $next = this.getNext();
+        result = result * PRIME + ($next == null ? 43 : $next.hashCode());
+        final Object $last = this.getLast();
+        result = result * PRIME + ($last == null ? 43 : $last.hashCode());
+        final Object $rateLimitTotal = this.getRateLimitTotal();
+        result = result * PRIME + ($rateLimitTotal == null ? 43 : $rateLimitTotal.hashCode());
+        final Object $rateLimitRemain = this.getRateLimitRemain();
+        result = result * PRIME + ($rateLimitRemain == null ? 43 : $rateLimitRemain.hashCode());
+        final Object $content = this.getContent();
+        result = result * PRIME + ($content == null ? 43 : $content.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "BlockccResponse(total=" + this.getTotal() + ", first=" + this.getFirst() + ", prev=" + this.getPrev() + ", next=" + this.getNext() + ", last=" + this.getLast() + ", rateLimitTotal=" + this.getRateLimitTotal() + ", rateLimitRemain=" + this.getRateLimitRemain() + ", content=" + this.getContent() + ")";
+    }
 }
