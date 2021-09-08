@@ -21,7 +21,7 @@
 
     <groupId>cc.block.data</groupId>
     <artifactId>blockcc-api-client</artifactId>
-    <version>1.3.1-SHAPSHOT</version>
+    <version>1.3.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>blockcc-api-client</name>
     <url>https://github.com/blockcc/blockcc-api-client-java</url>
