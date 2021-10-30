@@ -44,13 +44,17 @@ JDK 1.8+
 
 There  main client classes that can be used to interact with the API:
 
-[`BlockccApiRestClient`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiRestClient.java) , a synchronous/blocking [Blockcc API](https://blockcc.gitee.io/blockcc-api-document/en_US/#rest-api-2) client;
+[`BlockccApiRestClient`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiRestClient.java)
+, a synchronous/blocking [Blockcc API](https://blockcc.gitee.io/blockcc-api-document/en_US/#rest-api-2) client;
 
-These can be instantiated through the corresponding factory method of [`BlockccApiClientFactory`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiClientFactory.java), by passing the `API-KEY`, which can be created at [https://data.block.cc/account/dashboard](https://data.block.cc/account/dashboard).
+These can be instantiated through the corresponding factory method
+of [`BlockccApiClientFactory`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiClientFactory.java)
+, by passing the `API-KEY`, which can be created
+at [https://data.block.cc/account/dashboard](https://data.block.cc/account/dashboard). Edit TestConstants.java and
+replace your api_key in order to test.
 
 ```java
-        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOU_API_KEY");
-        BlockccApiRestClient client = factory.newRestClient();
+        public static final String API_KEY="REPLACE_BY_YOUR_API_KEY";
 ```
 
 Once the client is instantiated, it is possible to start making requests to the API.

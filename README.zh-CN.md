@@ -44,13 +44,14 @@ JDK 1.8+
 
 ### 入门
 
-可以使用主要的客户端类与API进行交互： [`BlockccApiRestClient`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiRestClient.java) , 一个同步 [Blockcc API](https://blockcc.gitee.io/blockcc-api-document/zh_CN/#rest-api-2) 客户端;
+可以使用主要的客户端类与API进行交互： [`BlockccApiRestClient`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiRestClient.java)
+, 一个同步 [Blockcc API](https://blockcc.gitee.io/blockcc-api-document/zh_CN/#rest-api-2) 客户端;
 
-这些可以通过相应的工厂方法实例化 [`BlockccApiClientFactory`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiClientFactory.java) , 通过 `API-KEY`, 可以被创建在 [https://data.block.cc/account/dashboard](https://data.block.cc/account/dashboard).
-
+这些可以通过相应的工厂方法实例化 [`BlockccApiClientFactory`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiClientFactory.java)
+, 通过 `API-KEY`, 可以被创建在 [https://data.block.cc/account/dashboard](https://data.block.cc/account/dashboard). 编辑
+TestConstants.java 的 apikey 来进行测试
 ```java
-        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOU_API_KEY");
-        BlockccApiRestClient client = factory.newRestClient();
+        public static final String API_KEY="REPLACE_BY_YOUR_API_KEY";
 ```
 
 实例化客户端后，就可以开始向API发出请求了
