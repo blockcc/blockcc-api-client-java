@@ -20,6 +20,7 @@ package cc.block.data.api.constant;
  */
 public class BlockccApiConstants {
 
+    public static final String DEFAULT_HOST = "data.mifengcha.com";
 
     public static final String HEADER_API_KEY = "X-API-KEY";
 

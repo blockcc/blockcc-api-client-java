@@ -15,6 +15,7 @@
 
 package cc.block.data.api;
 
+import cc.block.data.api.constant.BlockccApiConstants;
 import cc.block.data.api.impl.BlockccApiRestClientImpl;
 import cc.block.data.api.impl.BlockccApiServiceGenerator;
 import cc.block.data.api.impl.BlockccApiWebSocketClientImpl;
@@ -31,9 +32,15 @@ public class BlockccApiClientFactory {
      * api key
      */
     private final String apiKey;
+    private final String host;
 
     public BlockccApiClientFactory(String apiKey) {
+        this(apiKey, BlockccApiConstants.DEFAULT_HOST);
+    }
+
+    public BlockccApiClientFactory(String apiKey, String host) {
         this.apiKey = apiKey;
+        this.host = host;
     }
 
     /**
@@ -47,13 +54,23 @@ public class BlockccApiClientFactory {
     }
 
     /**
+     * New instance.
+     *
+     * @param apiKey the API key
+     * @return the Blockcc api client factory
+     */
+    public static BlockccApiClientFactory newInstance(String apiKey, String host) {
+        return new BlockccApiClientFactory(apiKey, host);
+    }
+
+
+    /**
      * Creates a new synchronous/blocking REST client.
      *
      * @return BlockccApiRestClient
      */
     public BlockccApiRestClient newRestClient() {
-
-        return new BlockccApiRestClientImpl(apiKey);
+        return new BlockccApiRestClientImpl(apiKey, host, null);
     }
 
     /**
@@ -63,7 +80,7 @@ public class BlockccApiClientFactory {
      * @return apiClient
      */
     public BlockccApiRestClient newRestClient(Cache cache) {
-        return new BlockccApiRestClientImpl(apiKey, cache);
+        return new BlockccApiRestClientImpl(apiKey, host, cache);
     }
 
     /**
@@ -72,6 +89,6 @@ public class BlockccApiClientFactory {
      * @return BlockccApiWebSocketClient
      */
     public BlockccApiWebSocketClient newWebSocketClient() {
-        return new BlockccApiWebSocketClientImpl(BlockccApiServiceGenerator.getSharedClient(), apiKey);
+        return new BlockccApiWebSocketClientImpl(BlockccApiServiceGenerator.getSharedClient(), apiKey, host);
     }
 }

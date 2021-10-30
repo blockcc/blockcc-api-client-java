@@ -16,7 +16,6 @@
 package cc.block.data.api.impl;
 
 import cc.block.data.api.BlockccApiError;
-import cc.block.data.api.config.BlockccApiConfig;
 import cc.block.data.api.domain.BlockccResponse;
 import cc.block.data.api.exception.BlockccApiException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,21 +54,6 @@ public class BlockccApiServiceGenerator {
         throw new IllegalStateException("Utility class");
     }
 
-    public static <S> S createService(Class<S> serviceClass, String apiKey) {
-        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
-                .baseUrl(BlockccApiConfig.getBaseUrl())
-                .addConverterFactory(CONVERTER_FACTORY);
-
-
-        AuthenticationInterceptor interceptor = new AuthenticationInterceptor(apiKey);
-        OkHttpClient adaptedClient = SHARED_CLIENT.newBuilder().addInterceptor(interceptor).build();
-        retrofitBuilder.client(adaptedClient);
-
-
-        Retrofit retrofit = retrofitBuilder.build();
-        return retrofit.create(serviceClass);
-    }
-
     /**
      * Using cache will save a lot of traffic
      * please set the cache directory according to your own operating system when calling
@@ -84,15 +68,22 @@ public class BlockccApiServiceGenerator {
      * @param <S>          /
      * @return /
      */
-    public static <S> S createService(Class<S> serviceClass, String apiKey, Cache cache) {
-        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
-                .baseUrl(BlockccApiConfig.getBaseUrl())
-                .addConverterFactory(CONVERTER_FACTORY);
+    public static <S> S createService(Class<S> serviceClass, String apiKey, String host, Cache cache) {
+        String url = "https://" + host;
+
         AuthenticationInterceptor interceptor = new AuthenticationInterceptor(apiKey);
-        OkHttpClient adaptedClient = SHARED_CLIENT.newBuilder().addInterceptor(interceptor).cache(cache).build();
+
+        OkHttpClient.Builder builder = SHARED_CLIENT.newBuilder().addInterceptor(interceptor);
+        if (cache != null) {
+            builder.cache(cache);
+        }
+
+        OkHttpClient adaptedClient = builder.build();
+
+        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(CONVERTER_FACTORY);
         retrofitBuilder.client(adaptedClient);
-
-
         Retrofit retrofit = retrofitBuilder.build();
         return retrofit.create(serviceClass);
     }

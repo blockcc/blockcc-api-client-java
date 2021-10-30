@@ -17,7 +17,6 @@ package cc.block.data.api.impl;
 
 import cc.block.data.api.BlockccApiCallback;
 import cc.block.data.api.BlockccApiWebSocketClient;
-import cc.block.data.api.config.BlockccApiConfig;
 import cc.block.data.api.domain.Event;
 import cc.block.data.api.domain.market.OrderBook;
 import cc.block.data.api.domain.market.Price;
@@ -36,34 +35,36 @@ public class BlockccApiWebSocketClientImpl implements BlockccApiWebSocketClient,
 
     private final OkHttpClient client;
     private final String apiKey;
+    private final String host;
 
-    public BlockccApiWebSocketClientImpl(OkHttpClient client, String apiKey) {
+    public BlockccApiWebSocketClientImpl(OkHttpClient client, String apiKey, String host) {
         this.client = client;
         this.apiKey = apiKey;
+        this.host = host;
     }
 
     @Override
     public Closeable getConnection(BlockccApiCallback<Event<Object>> callback, String msg) {
-        return createNewWebSocket(apiKey, new BlockccApiWebSocketListener<>(callback, new TypeReference<Event<Object>>() {
+        return createNewWebSocket(apiKey, host, new BlockccApiWebSocketListener<>(callback, new TypeReference<Event<Object>>() {
         }, msg));
     }
 
     @Override
     public Closeable getTickers(BlockccApiCallback<Event<Ticker>> callback, String desc) {
 
-        return createNewWebSocket(apiKey, new BlockccApiWebSocketListener<>(callback, new TypeReference<Event<Ticker>>() {
+        return createNewWebSocket(apiKey, host, new BlockccApiWebSocketListener<>(callback, new TypeReference<Event<Ticker>>() {
         }, desc));
     }
 
     @Override
     public Closeable getOrderBooks(BlockccApiCallback<Event<OrderBook>> callback, String desc) {
-        return createNewWebSocket(apiKey, new BlockccApiWebSocketListener<>(callback, new TypeReference<Event<OrderBook>>() {
+        return createNewWebSocket(apiKey, host, new BlockccApiWebSocketListener<>(callback, new TypeReference<Event<OrderBook>>() {
         }, desc));
     }
 
     @Override
     public Closeable getPrices(BlockccApiCallback<Event<Price>> callback, String desc) {
-        return createNewWebSocket(apiKey, new BlockccApiWebSocketListener<>(callback, new TypeReference<Event<Price>>() {
+        return createNewWebSocket(apiKey, host, new BlockccApiWebSocketListener<>(callback, new TypeReference<Event<Price>>() {
         }, desc));
     }
 
@@ -75,8 +76,9 @@ public class BlockccApiWebSocketClientImpl implements BlockccApiWebSocketClient,
     public void close() {
     }
 
-    private Closeable createNewWebSocket(String apiKey, BlockccApiWebSocketListener<?> listener) {
-        Request request = new Request.Builder().url(BlockccApiConfig.getBaseStreamUrl(apiKey)).build();
+    private Closeable createNewWebSocket(String apiKey, String host, BlockccApiWebSocketListener<?> listener) {
+        String url = "wss://" + host + "/ws/v3?api_key=" + apiKey;
+        Request request = new Request.Builder().url(url).build();
         WebSocket websocket = client.newWebSocket(request, listener);
         return () -> {
             final int code = 1000;
