@@ -40,7 +40,7 @@ public class BlockccApiRestClientImpl implements BlockccApiRestClient {
 
 
     public BlockccApiRestClientImpl(String apiKey, String host, Cache cache) {
-        blockccApiService = BlockccApiServiceGenerator.createService(BlockccApiService.class, host, apiKey, cache);
+        blockccApiService = BlockccApiServiceGenerator.createService(BlockccApiService.class, apiKey, host, cache);
     }
 
     @Override
