@@ -46,7 +46,7 @@ JDK 1.8+
 
 可以使用主要的客户端类与API进行交互： [`BlockccApiRestClient`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiRestClient.java) , 一个同步 [Blockcc API](https://blockcc.gitee.io/blockcc-api-document/zh_CN/#rest-api-2) 客户端;
 
-这些可以通过相应的工厂方法实例化 [`BlockccApiClientFactory`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiClientFactory.java) , 通过 `API-KEY`, 可以被创建在 [https://data.Blockcc.com/account/dashboard](https://data.Blockcc.com/account/dashboard).
+这些可以通过相应的工厂方法实例化 [`BlockccApiClientFactory`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiClientFactory.java) , 通过 `API-KEY`, 可以被创建在 [https://data.block.cc/account/dashboard](https://data.block.cc/account/dashboard).
 
 ```java
         BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOU_API_KEY");

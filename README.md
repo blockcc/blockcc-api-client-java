@@ -46,7 +46,7 @@ There  main client classes that can be used to interact with the API:
 
 [`BlockccApiRestClient`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiRestClient.java) , a synchronous/blocking [Blockcc API](https://blockcc.gitee.io/blockcc-api-document/en_US/#rest-api-2) client;
 
-These can be instantiated through the corresponding factory method of [`BlockccApiClientFactory`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiClientFactory.java), by passing the `API-KEY`, which can be created at [https://data.Blockcc.com/account/dashboard](https://data.Blockcc.com/account/dashboard).
+These can be instantiated through the corresponding factory method of [`BlockccApiClientFactory`](https://github.com/blockcc/blockcc-api-client-java/blob/master/src/main/java/cc/block/data/api/BlockccApiClientFactory.java), by passing the `API-KEY`, which can be created at [https://data.block.cc/account/dashboard](https://data.block.cc/account/dashboard).
 
 ```java
         BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOU_API_KEY");
