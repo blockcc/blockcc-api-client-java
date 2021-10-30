@@ -19,7 +19,8 @@ import cc.block.data.api.BlockccApiClientFactory;
 import cc.block.data.api.BlockccApiRestClient;
 import cc.block.data.api.domain.market.Market;
 import cc.block.data.api.domain.market.request.MarketParam;
-
+import static cc.block.data.api.examples.config.TestConstants.API_KEY;
+import static cc.block.data.api.examples.config.TestConstants.HOST;
 /**
  * @author lijiaxing
  * @date 2020/10/20
@@ -30,7 +31,7 @@ public class MarketsExample {
 
 
     public static void main(String[] args) {
-        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOUR_API_KEY");
+        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance(API_KEY,HOST);
         BlockccApiRestClient client = factory.newRestClient();
         MarketParam marketParams = MarketParam.builder().build();
         for (Market market : client.getMarkets(marketParams).getContent()) {

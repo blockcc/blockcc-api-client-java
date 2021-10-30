@@ -20,7 +20,8 @@ import cc.block.data.api.BlockccApiRestClient;
 import cc.block.data.api.domain.enumeration.SocialMediaSource;
 import cc.block.data.api.domain.news.SocialMedia;
 import cc.block.data.api.domain.news.request.SocialMediaParam;
-
+import static cc.block.data.api.examples.config.TestConstants.API_KEY;
+import static cc.block.data.api.examples.config.TestConstants.HOST;
 /**
  * @author lijiaxing
  * @date 2020/10/21
@@ -29,7 +30,7 @@ import cc.block.data.api.domain.news.request.SocialMediaParam;
  */
 public class SocialMediasExample {
     public static void main(String[] args) {
-        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOUR_API_KEY");
+        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance(API_KEY,HOST);
         BlockccApiRestClient client = factory.newRestClient();
         SocialMediaParam socialMediaParams = SocialMediaParam.builder().source(SocialMediaSource.WEIBO).build();
         for (SocialMedia socialMedia : client.getSocialMedias(socialMediaParams).getContent()) {

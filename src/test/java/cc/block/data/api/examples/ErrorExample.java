@@ -18,7 +18,8 @@ package cc.block.data.api.examples;
 import cc.block.data.api.BlockccApiClientFactory;
 import cc.block.data.api.BlockccApiRestClient;
 import cc.block.data.api.domain.market.request.KlineParam;
-
+import static cc.block.data.api.examples.config.TestConstants.API_KEY;
+import static cc.block.data.api.examples.config.TestConstants.HOST;
 /**
  * @author lijiaxing
  * @date 2020/10/21
@@ -26,7 +27,7 @@ import cc.block.data.api.domain.market.request.KlineParam;
  */
 public class ErrorExample {
     public static void main(String[] args) {
-        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOUR_API_KEY");
+        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance(API_KEY,HOST);
         BlockccApiRestClient client = factory.newRestClient();
         client.getKline(KlineParam.builder().build());
     }

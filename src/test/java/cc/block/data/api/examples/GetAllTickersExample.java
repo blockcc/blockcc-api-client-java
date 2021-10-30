@@ -23,7 +23,8 @@ import cc.block.data.api.domain.market.request.TickerParam;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import static cc.block.data.api.examples.config.TestConstants.API_KEY;
+import static cc.block.data.api.examples.config.TestConstants.HOST;
 /**
  * @author lijiaxing
  * @date 2020/10/19
@@ -32,7 +33,7 @@ import java.util.List;
  */
 public class GetAllTickersExample {
     public static void main(String[] args) throws InterruptedException {
-        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOUR_API_KEY");
+        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance(API_KEY,HOST);
         BlockccApiRestClient client = factory.newRestClient();
 
 //       Get tickers by tickerParam

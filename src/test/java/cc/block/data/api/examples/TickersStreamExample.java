@@ -25,7 +25,8 @@ import cc.block.data.api.bean.TopicType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+import static cc.block.data.api.examples.config.TestConstants.API_KEY;
+import static cc.block.data.api.examples.config.TestConstants.HOST;
 /**
  * @author lijiaxing
  * @date 2020/10/23
@@ -33,7 +34,7 @@ import java.util.Objects;
  */
 public class TickersStreamExample {
     public static void main(String[] args) {
-        BlockccApiWebSocketClient client = BlockccApiClientFactory.newInstance("YOUR_API_KEY").newWebSocketClient();
+        BlockccApiWebSocketClient client = BlockccApiClientFactory.newInstance(API_KEY,HOST).newWebSocketClient();
         List<String> tickerArgs = new ArrayList<>();
         tickerArgs.add(Topic.builder().type(TopicType.ticker).desc("huobipro_HT_USDT").build().toTopicString());
         tickerArgs.add(Topic.builder().type(TopicType.ticker).desc("binance_BNB_USDT").build().toTopicString());

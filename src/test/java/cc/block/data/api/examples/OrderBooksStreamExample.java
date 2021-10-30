@@ -24,7 +24,8 @@ import cc.block.data.api.bean.TopicType;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import static cc.block.data.api.examples.config.TestConstants.API_KEY;
+import static cc.block.data.api.examples.config.TestConstants.HOST;
 /**
  * @author lijiaxing
  * @date 2020/10/23
@@ -32,7 +33,7 @@ import java.util.List;
  */
 public class OrderBooksStreamExample {
     public static void main(String[] args) {
-        BlockccApiWebSocketClient client = BlockccApiClientFactory.newInstance("YOUR_API_KEY").newWebSocketClient();
+        BlockccApiWebSocketClient client = BlockccApiClientFactory.newInstance(API_KEY,HOST).newWebSocketClient();
         List<String> orderBookArgs = new ArrayList<>();
         orderBookArgs.add(Topic.builder().type(TopicType.orderbook).desc("gate-io_BTC_USDT").build().toTopicString());
         orderBookArgs.add(Topic.builder().type(TopicType.orderbook).desc("binance_BNB_USDT").build().toTopicString());

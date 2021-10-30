@@ -20,7 +20,8 @@ import cc.block.data.api.BlockccApiRestClient;
 import cc.block.data.api.domain.enumeration.Interval;
 import cc.block.data.api.domain.market.Kline;
 import cc.block.data.api.domain.market.request.KlineParam;
-
+import static cc.block.data.api.examples.config.TestConstants.API_KEY;
+import static cc.block.data.api.examples.config.TestConstants.HOST;
 /**
  * @author lijiaxing
  * @date 2020/10/20
@@ -29,7 +30,7 @@ import cc.block.data.api.domain.market.request.KlineParam;
  */
 public class KlineExample {
     public static void main(String[] args) {
-        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOUR_API_KEY");
+        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance(API_KEY,HOST);
         BlockccApiRestClient client = factory.newRestClient();
         KlineParam klineParams = KlineParam.builder().interval(Interval.ONE_DAY).desc("gate-io_BTC_USDT").build();
         for (Kline kline : client.getKline(klineParams).getContent()) {

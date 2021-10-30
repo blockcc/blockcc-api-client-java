@@ -19,7 +19,8 @@ import cc.block.data.api.BlockccApiClientFactory;
 import cc.block.data.api.BlockccApiRestClient;
 import cc.block.data.api.domain.market.Symbol;
 import cc.block.data.api.domain.market.request.SymbolParam;
-
+import static cc.block.data.api.examples.config.TestConstants.API_KEY;
+import static cc.block.data.api.examples.config.TestConstants.HOST;
 /**
  * @author lijiaxing
  * @date 2020/10/20
@@ -28,7 +29,7 @@ import cc.block.data.api.domain.market.request.SymbolParam;
  */
 public class SymbolsExample {
     public static void main(String[] args) {
-        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOUR_API_KEY");
+        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance(API_KEY,HOST);
         BlockccApiRestClient client = factory.newRestClient();
         SymbolParam symbolParams = SymbolParam.builder().details(false).build();
         for (Symbol symbol : client.getSymbols(symbolParams).getContent()) {

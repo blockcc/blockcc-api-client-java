@@ -19,7 +19,8 @@ import cc.block.data.api.BlockccApiClientFactory;
 import cc.block.data.api.BlockccApiRestClient;
 import cc.block.data.api.domain.market.Trade;
 import cc.block.data.api.domain.market.request.TradeParam;
-
+import static cc.block.data.api.examples.config.TestConstants.API_KEY;
+import static cc.block.data.api.examples.config.TestConstants.HOST;
 /**
  * @author lijiaxing
  * @date 2020/10/20
@@ -28,7 +29,7 @@ import cc.block.data.api.domain.market.request.TradeParam;
  */
 public class TradesExample {
     public static void main(String[] args) {
-        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOUR_API_KEY");
+        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance(API_KEY,HOST);
         BlockccApiRestClient client = factory.newRestClient();
         TradeParam tradeParams = TradeParam.builder().desc("gate-io_BTC_USDT").limit(2).build();
         for (Trade trade : client.getTrades(tradeParams).getContent()) {

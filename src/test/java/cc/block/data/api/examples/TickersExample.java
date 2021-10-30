@@ -22,7 +22,8 @@ import cc.block.data.api.domain.market.Ticker;
 import cc.block.data.api.domain.market.request.TickerParam;
 
 import java.util.List;
-
+import static cc.block.data.api.examples.config.TestConstants.API_KEY;
+import static cc.block.data.api.examples.config.TestConstants.HOST;
 /**
  * @author lijiaxing
  * @date 2020/10/19
@@ -32,7 +33,7 @@ import java.util.List;
  */
 public class TickersExample {
     public static void main(String[] args) {
-        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOU_API_KEY");
+        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance(API_KEY,HOST);
         BlockccApiRestClient client = factory.newRestClient();
 
         boolean hasNextPage = true;

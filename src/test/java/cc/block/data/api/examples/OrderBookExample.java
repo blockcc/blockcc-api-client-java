@@ -18,7 +18,8 @@ package cc.block.data.api.examples;
 import cc.block.data.api.BlockccApiClientFactory;
 import cc.block.data.api.BlockccApiRestClient;
 import cc.block.data.api.domain.market.request.OrderBookParam;
-
+import static cc.block.data.api.examples.config.TestConstants.API_KEY;
+import static cc.block.data.api.examples.config.TestConstants.HOST;
 /**
  * @author lijiaxing
  * @date 2020/10/20
@@ -27,7 +28,7 @@ import cc.block.data.api.domain.market.request.OrderBookParam;
  */
 public class OrderBookExample {
     public static void main(String[] args) {
-        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance("YOUR_API_KEY");
+        BlockccApiClientFactory factory = BlockccApiClientFactory.newInstance(API_KEY,HOST);
         BlockccApiRestClient client = factory.newRestClient();
         OrderBookParam orderBookParams = OrderBookParam.builder().desc("gate-io_BTC_USDT").build();
         System.out.println(client.getOrderBook(orderBookParams));
